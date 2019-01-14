@@ -38,10 +38,16 @@ Execute functions.
 ```
 cd $fnw_home/Fn/OpenCV
 
-time cat in.jpg | base64 | fn invoke OpenCV canny | tr -d '"' | base64 -D >out1.jpg
-time curl -d "$(cat in.jpg | base64)" -X POST  http://localhost:8080/t/OpenCV/canny-trigger | tr -d '"' | base64 -D >out2.jpg
+time cat in.jpg | fn invoke OpenCV canny > out.jpg
+## old: time cat in.jpg | base64 | fn invoke OpenCV canny | tr -d '"' | base64 -D >out1.jpg
 
-time cat hubert.jpg | base64 | fn invoke helloDN hellodn | tr -d '"' | base64 -D >hubert1.jpg
-time cat hubert.jpg | base64 > hubert.b64
-time curl --data-binary "@hubert.b64" -X POST  http://localhost:8080/t/helloDN/hellodn-trigger | tr -d '"' | base64 -D >hubert2.jpg
+time curl -d "$(cat in.jpg )" -X POST  http://localhost:8080/t/OpenCV/canny-trigger >out2.jpg
+## old: time curl -d "$(cat in.jpg | base64)" -X POST  http://localhost:8080/t/OpenCV/canny-trigger | tr -d '"' | base64 -D >out2.jpg
+
+##old: time cat hubert.jpg | base64 | fn invoke helloDN hellodn | tr -d '"' | base64 -D >hubert1.jpg
+##old: time cat hubert.jpg | base64 > hubert.b64
+##old: time curl --data-binary "@hubert.b64" -X POST  http://localhost:8080/t/helloDN/hellodn-trigger | tr -d '"' | base64 -D >hubert2.jpg
+
+curl ---data-binary "@in.jpg" -X POST http://localhost:8080/t/OpenCV/canny-trigger>out2.jpg
+
 ```
