@@ -51,3 +51,10 @@ time curl -d "$(cat in.jpg )" -X POST  http://localhost:8080/t/OpenCV/canny-trig
 curl ---data-binary "@in.jpg" -X POST http://localhost:8080/t/OpenCV/canny-trigger>out2.jpg
 
 ```
+## DEBUG
+### get last call
+fn list calls OpenCV canny | head -n 1
+### get logs from last call
+fn get logs OpenCV canny 01D16J3VY3NG8G00GZJ000004
+
+
