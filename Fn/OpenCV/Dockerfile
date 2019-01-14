@@ -7,4 +7,4 @@ RUN pip3 install --target /python/  --no-cache --no-cache-dir -r requirements.tx
 RUN rm -fr ~/.cache/pip /tmp* requirements.txt func.yaml Dockerfile .venv
 
 ENV PYTHONPATH=/python
-ENTRYPOINT ["python3", "func.py"]
+ENTRYPOINT ["python3", "canny.py"]
