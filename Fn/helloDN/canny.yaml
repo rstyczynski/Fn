@@ -1,0 +1,12 @@
+schema_version: 20180708
+name: canny
+version: 0.0.135
+runtime: python
+entrypoint: python3 canny.py
+format: http-stream
+memory: 1024
+timeout: 60
+triggers:
+- name: hellodn-trigger
+  type: http
+  source: /hellodn-trigger
