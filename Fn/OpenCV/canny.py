@@ -1,4 +1,5 @@
 import fdk
+from fdk import response
 import json
 import time
 
@@ -15,6 +16,7 @@ import numpy as np
 import linecache
 import sys
 
+
 def getActiveLine():
     exc_type, exc_obj, tb = sys.exc_info()
     f = tb.tb_frame
@@ -24,22 +26,15 @@ def getActiveLine():
     line = linecache.getline(filename, lineno, f.f_globals)
     return 'EXCEPTION IN ({}, LINE {} "{}"): {}'.format(filename, lineno, line.strip(), exc_obj)
 
-response = "(-)"
+
 def handler(ctx, data=None, loop=None):
-    response = "OK"
-    #
+    res=""
     try:
         if data and len(data) > 0:
             #
-            # 1. decode base64
-            #
-            base64_string=struct.pack("b"*len(data),*data)
-            img_utf = base64.b64decode(base64_string)
-            nparr = np.fromstring(img_utf, np.uint8)
-            #
             # 1. decode byte stream
             #
-            #nparr=np.frombuffer(data, np.uint8)
+            nparr=np.frombuffer(data, np.uint8)
             #
             # 2. decode image
             #
@@ -49,15 +44,19 @@ def handler(ctx, data=None, loop=None):
             #
             edges = cv2.Canny(img_np,100,200)
             #
-            # 4. enode bas64
+            # 4. write response to byte array
             #
-            retval, buffer = cv2.imencode('.jpg', edges)
-            encoded = base64.urlsafe_b64encode(buffer)
-            response = encoded
+            retval, buf = cv2.imencode('.jpg', edges)
+            #
+            # 5 Convert buffer to bytes for row response
+            res= buf.tobytes()
     except Exception as ex:
-        response = "Exception:" + str(ex) + ' at ' + getActiveLine()
-    #
-    return response
-
+        res = "Exception:" + str(ex) + ' at ' + getActiveLine()
+        return res 
+    return response.RawResponse(
+            ctx, response_data=res, headers={
+                "Content-Type": "application/octet-stream",
+            }
+    )
 if __name__ == "__main__":
     fdk.handle(handler)
