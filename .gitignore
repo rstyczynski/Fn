@@ -14,3 +14,15 @@ Fn/helloDN/huber_kreskówka.jpg
 *.swp
 
 *.pyc
+
+Fn/darknet_test/.coverage
+
+docker/yolo3-4-py/input/1083030379.jpg
+
+docker/yolo3-4-py/output/1083030379.jpg
+
+Fn/darknet/.coverage
+
+Fn/OpenCV/out2.jpg
+
+Fn/OpenCV/out2.jpg
