@@ -1,0 +1,12 @@
+schema_version: 20180708
+name: darknet
+version: 0.0.153
+runtime: python
+entrypoint: python3 darknet.py
+format: http-stream
+memory: 1024
+timeout: 300
+triggers:
+- name: darknet-trigger
+  type: http
+  source: /darknet-trigger

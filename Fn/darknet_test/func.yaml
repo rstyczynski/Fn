@@ -1,0 +1,12 @@
+schema_version: 20180708
+name: darknet_test
+version: 0.0.156
+runtime: python
+entrypoint: python3 darknet_test.py
+format: http-stream
+memory: 1024
+timeout: 300
+triggers:
+- name: darknet_test
+  type: http
+  source: /darknet-test
