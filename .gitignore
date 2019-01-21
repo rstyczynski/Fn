@@ -28,3 +28,25 @@ Fn/OpenCV/out2.jpg
 Fn/OpenCV/out2.jpg
 
 Fn/OpenCV/out2.jpg
+
+workbench/classifyImage/libdarknet.so
+
+workbench/classifyImage/data/coco.names
+
+workbench/classifyImage/cfg/coco.data
+
+workbench/classifyImage/cfg/yolov3.cfg
+
+workbench/classifyImage/out.jpg
+
+workbench/Darknet-TEST/cfg/coco.data
+
+workbench/Darknet-TEST/cfg/yolov3.cfg
+
+workbench/Darknet-TEST/libdarknet.so
+
+workbench/classifyImage/weights/yolov3.weights
+
+workbench/Darknet-TEST/data/coco.names
+
+workbench/Darknet-TEST/weights/yolov3.weights
